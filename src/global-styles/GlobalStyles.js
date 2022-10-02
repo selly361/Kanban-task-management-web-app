@@ -29,4 +29,47 @@ export const GlobalStyle = createGlobalStyle`
     button {
       cursor: pointer;
     }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10%;
+      background: ${({theme}) => theme.bodyBg};
+    }
+    ::-webkit-scrollbar-track {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 5px;
+      background: ${({theme}) => theme.scrollBg};
+    }
+
+
+    .column-1 {
+      background-color: #49C4E5; 
+    }
+
+    .column-2 {
+      background-color: #8471F2; 
+    }
+
+
+    .column-3 {
+      background-color: #67E2AE; 
+    }
+
+
+    .column-4 {
+      background-color: #e5a449; 
+    }
+
+
+    .column-5 {
+      background-color: #2a3fdb; 
+    }
+
+    .column-6 {
+      background-color: #c36e6e; 
+    }
 `;

@@ -18,8 +18,10 @@ const Wrapper = ({ children }) => {
   // }, [JSON.stringify(boardTabs)]);
 
   useEffect(() => {
+    savedToLocalStorage("active-board", activeBoard);
     savedToLocalStorage("theme", theme);
-  }, [theme]);
+    savedToLocalStorage("sidebars-open", sideBarsOpen);
+  }, [theme, activeBoard, sideBarsOpen]);
 
   return (
     <Fragment>

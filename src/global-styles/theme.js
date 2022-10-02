@@ -3,7 +3,7 @@ export const light = {
     navBarBg: "white",
     asideBg: "white",
     taskBg: "white",
-    
+    scrollBg: "white",
     // sub task checkbox
     subTaskCheckBoxBg: "#F4F7FD",
     subTaskCheckBoxHover: "#979797",
@@ -48,6 +48,7 @@ export const dark = {
     asideBg: "#2B2C37",
     navBarBg: "#2B2C37",
     taskBg: "#2B2C37",
+    scrollBg: "#2B2C37",
     
     // sub task checkbox
     subTaskCheckBoxBg: "#20212C",

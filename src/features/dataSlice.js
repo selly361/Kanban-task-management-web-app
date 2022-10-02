@@ -24,7 +24,6 @@ export const dataSlice = createSlice({
 
     toggleSidebar: (state) => {
       state.sideBarsOpen = state.sideBarsOpen === "open" ? "close" : "open";
-      localStorage.setItem("sidebars-open", JSON.stringify(state.sideBarsOpen));
     },
 
     toggleActiveBoard: (state, action) => {

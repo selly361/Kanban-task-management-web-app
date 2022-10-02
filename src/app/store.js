@@ -1,10 +1,12 @@
-import boardTabsSlice from '../features/boardTabsSlice';
+import boardTabsReducer from '../features/boardTabsSlice';
 import { configureStore } from '@reduxjs/toolkit';
-import dataSlice from '../features/dataSlice';
+import dataReducer from '../features/dataSlice';
+import modalReducer from '../features/modalSlice';
 
 export const store = configureStore({
   reducer: {
-    boardTabs: boardTabsSlice,
-    data: dataSlice
+    boardTabs: boardTabsReducer,
+    data: dataReducer,
+    modal: modalReducer
   },
 });
