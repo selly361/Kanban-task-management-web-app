@@ -4,25 +4,30 @@ import React, { Fragment } from "react";
 import { toggleActiveBoard, toggleSidebar } from "../../features/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import Logo from "../shared/Logo/Logo";
 import ThemeSwitcher from "../shared/ThemeSwitcher/ThemeSwitcher";
+import { openModal } from "../../features/modalSlice";
 import styled from "styled-components";
 
 const StyledSideBar = styled(motion.aside)`
-  position: absolute;
+  position: fixed;
   width: 300px;
   height: 100vh;
-  left: 0px;
-  top: 0px;
   background-color: ${({ theme }) => theme.asideBg};
-  border-right: 1px solid ${({ theme }) => theme.border};
   z-index: 5;
-  padding-top: 120px;
+  padding-top: 97px;
+  
+
+`;
+
+const SideBarContainer = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   padding-bottom: 3rem;
-`;
+  border-right: 1px solid ${({ theme }) => theme.border};
+  height: calc(100vh - 97px);
+  padding-top: 23px;
+`
 
 const BoardTabsLength = styled.h6`
   color: ${({ theme }) => theme.grey};
@@ -100,7 +105,7 @@ const HideButton = styled.button`
 `;
 
 const ShowButton = styled(motion.button)`
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 3rem;
   background-color: ${({ theme }) => theme.blue};
@@ -108,6 +113,7 @@ const ShowButton = styled(motion.button)`
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   transition: 0.5s background-color ease;
+  z-index: 12;
 
   &:hover {
     background-color: ${({ theme }) => theme.lightBlue};
@@ -133,17 +139,19 @@ const SideBar = () => {
   const { sideBarsOpen } = data;
   const dispatch = useDispatch();
 
+
   return (
     <Fragment>
       <AnimatePresence>
         {sideBarsOpen === "open" && (
           <StyledSideBar
+            className={sideBarsOpen}
             variants={animation}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            <Logo />
+            <SideBarContainer>
             <div>
               <BoardTabsLength>ALL BOARDS ({boardTabs.length})</BoardTabsLength>
               <BoardsWrapper>
@@ -159,7 +167,7 @@ const SideBar = () => {
                     {name}
                   </BoardTab>
                 ))}
-                <CreateBoardButton>
+                <CreateBoardButton onClick={() => dispatch(openModal({ ModalsType: "add-board" }))}>
                   <BoardIcon />
                   +Create New Board
                 </CreateBoardButton>
@@ -172,6 +180,7 @@ const SideBar = () => {
                 Hide Sidebar
               </HideButton>
             </Container>
+            </SideBarContainer>
           </StyledSideBar>
         )}
       </AnimatePresence>

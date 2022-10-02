@@ -14,7 +14,9 @@ const LogoWrapper = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  border-bottom: 1px solid ${({theme}) => theme.border};
+  border-right: 1px solid ${({theme}) => theme.border};
+  z-index: 10;
+
 `;
 
 const Logo = () => {

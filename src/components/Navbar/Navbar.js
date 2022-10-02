@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { toggleActiveBoard } from "../../features/dataSlice";
 
 const StyledNavbar = styled.aside`
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 97px;
   left: 0px;
@@ -19,7 +19,8 @@ const StyledNavbar = styled.aside`
   display: flex;
   align-items: center;
   gap: 2rem;
-  -webkit-margin-collapse: collapse;
+  margin-bottom: 100px;
+  z-index: 6;
 `;
 
 const Title = styled.h1`

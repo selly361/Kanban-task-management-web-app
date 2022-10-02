@@ -1,4 +1,6 @@
+import BoardBody from "./components/BoardBody/BoardBody";
 import { GlobalStyle } from "./global-styles/GlobalStyles";
+import Modals from "./components/Modals/Modals";
 import Navbar from "./components/Navbar/Navbar";
 import React from "react";
 import SideBar from "./components/SideBar/SideBar";
@@ -9,7 +11,9 @@ function App() {
     <Wrapper>
       <GlobalStyle />
         <SideBar />
-        <Navbar />
+        <BoardBody />
+        <Modals />
+      <Navbar />
     </Wrapper>
   );
 }
