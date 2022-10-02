@@ -1,17 +1,18 @@
-import App from './App';
-import { Provider } from 'react-redux';
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { store } from './app/store';
+import { dark, light } from "./global-styles/theme";
 
-const container = document.getElementById('root');
+import App from "./App";
+import { Provider } from "react-redux";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { store } from "./app/store";
+
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <App />
     </Provider>
   </React.StrictMode>
 );
-
