@@ -13,12 +13,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 7px;
+  
 `;
 
 const ToggleBody = styled.div`
-  width: 45px;
+  width: 40px;
   box-sizing: content-box;
-  height: 20px;
+  height: 15px;
   background-color: ${({ theme }) => theme.blue};
   border-radius: 10px;
   display: flex;
@@ -27,8 +28,8 @@ const ToggleBody = styled.div`
   cursor: pointer;
 `;
 const Circle = styled.div`
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   background-color: white;
   transition: .3s margin ease;

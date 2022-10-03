@@ -13,15 +13,17 @@ const Wrapper = ({ children }) => {
   const { data, boardTabs } = state;
   const { theme, activeBoard, sideBarsOpen } = data;
 
-  // useEffect(() => {
-
-  // }, [JSON.stringify(boardTabs)]);
+  useEffect(() => {
+    savedToLocalStorage("board-tabs", boardTabs)
+  }, [JSON.stringify(boardTabs)]);
 
   useEffect(() => {
     savedToLocalStorage("active-board", activeBoard);
     savedToLocalStorage("theme", theme);
     savedToLocalStorage("sidebars-open", sideBarsOpen);
   }, [theme, activeBoard, sideBarsOpen]);
+
+
 
   return (
     <Fragment>

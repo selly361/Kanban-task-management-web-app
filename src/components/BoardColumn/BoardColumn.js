@@ -15,6 +15,7 @@ const ColumnName = styled.h4`
   display: flex;
   gap: 0.4rem;
   align-items: center;
+  font-weight: 500;
 `;
 
 const CircleStatus = styled.div`
@@ -41,6 +42,7 @@ const BoardColumn = ({ name, tasks, index }) => {
       <ColumnName>
         <CircleStatus className={`column-${index + 1}`} />
         {name}
+        ({tasks.length})
       </ColumnName>
       <TasksContainer className={tasks.length === 0 && "empty"}>
         {tasks.map((task) => (

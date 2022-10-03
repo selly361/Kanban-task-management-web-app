@@ -1,15 +1,16 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { Fragment, useEffect } from "react";
 import { closeModal, openModal } from "../../features/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import AddBoardModal from "./AddModal/AddBoardModal";
+import AddBoardModal from "./AddBoard/AddBoardModal";
+import DeleteBoardModal from "./DeleteBoard/DeleteBoardModal";
 import styled from "styled-components";
 
-const StyledOverlay = styled.div`
+const StyledOverlay = styled(motion.div)`
   position: fixed;
   inset: 0;
   background-color: black;
-  opacity: 0.6;
   top: 0;
   left: 0;
   width: 100vw;
@@ -18,7 +19,7 @@ const StyledOverlay = styled.div`
 `;
 
 const Overlay = ({ onClick }) => {
-  return <StyledOverlay onClick={onClick} />;
+  return <StyledOverlay initial={{ opacity: 0 }} animate={{ opacity: 0.6, transition: { duration: 1 } }} exit={{ opacity: 0, transition: { duration: 1 }  }} onClick={onClick} />;
 };
 
 const Modals = () => {
@@ -26,21 +27,29 @@ const Modals = () => {
     (state) => state.modal
   );
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
- useEffect(() => {
-    document.documentElement.style.overflow = "hidden"
- }, [ModalsOpen])
+  useEffect(() => {
+    if (ModalsOpen) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "";
+    }
+  }, [ModalsOpen]);
 
- const handleOverlayClick = () => {
-    dispatch(closeModal())
- }
+  const handleOverlayClick = () => {
+    dispatch(closeModal());
+  };
 
   return (
     <Fragment>
-      {ModalsType === "add-board" ? <AddBoardModal /> : null}
-    
-      {ModalsOpen && <Overlay onClick={handleOverlayClick} />}
+      <AnimatePresence>
+        {ModalsType === "add-board" && <AddBoardModal />}
+        {ModalsType === "delete-board" && <DeleteBoardModal />}
+        </AnimatePresence>
+      <AnimatePresence>
+        {ModalsOpen && <Overlay onClick={handleOverlayClick} />}
+      </AnimatePresence>
     </Fragment>
   );
 };

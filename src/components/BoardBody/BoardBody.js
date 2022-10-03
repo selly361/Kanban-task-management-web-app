@@ -29,10 +29,9 @@ const BoardBody = () => {
   const boardTabs = state.boardTabs
 
   const BoardToDisplay = boardTabs.find(board => board.name === activeBoard)
-  
   return (
     <StyledBoardBody className={sideBarsOpen}>
-        {BoardToDisplay.columns.map((boardColumn, index) => <BoardColumn key={boardColumn.name} index={index} {...boardColumn} />)}
+        {BoardToDisplay?.columns.map((boardColumn, index) => <BoardColumn key={boardColumn.name} index={index} {...boardColumn} />)}
     </StyledBoardBody>
   )
 };

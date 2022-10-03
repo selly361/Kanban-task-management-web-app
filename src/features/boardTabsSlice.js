@@ -3,11 +3,11 @@ import data from '../data/data.json'
 
 export const boardTabsSlice = createSlice({
     name: "boardTabs",
-    initialState: JSON.parse(localStorage.getItem("data")) || data,
+    initialState: JSON.parse(localStorage.getItem("board-tabs")) || data,
     reducers: {
         deleteBoard: (state, action) => {
-            const { name } = action.payload;
-            const boardToDeleteIndex = state.findIndex(board => board.name === name);
+            const activeBoard = action.payload;
+            const boardToDeleteIndex = state.findIndex(board => board.name === activeBoard);
 
             if(boardToDeleteIndex !== -1){
                 state.splice(boardToDeleteIndex, 1)
@@ -15,6 +15,7 @@ export const boardTabsSlice = createSlice({
         },
 
         addBoard: (state, action) => {
+            console.log(action.payload)
             state.push(action.payload)
         },
 
@@ -22,6 +23,7 @@ export const boardTabsSlice = createSlice({
             const { name, board } = action.payload;
             const boardToEditIndex = state.findIndex(board => board.name === name)
             state.splice(boardToEditIndex, 1, board)
+            
         },
 
 

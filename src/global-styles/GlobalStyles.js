@@ -26,8 +26,13 @@ export const GlobalStyle = createGlobalStyle`
       outline: none;
     }
 
-    button {
+    button, svg {
       cursor: pointer;
+    }
+
+    button {
+      transition: 1s ease;
+      transition-property: color, background-color, opacity;
     }
 
     ::-webkit-scrollbar {

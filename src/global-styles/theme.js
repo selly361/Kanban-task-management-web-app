@@ -20,15 +20,15 @@ export const light = {
     dropDownBg: "white",
 
     // buttons
-    buttonPrimaryBg: "635FC7",
-    buttonPrimaryHover: "A8A4FF",
+    buttonPrimaryBg: "#635FC7",
+    buttonPrimaryHover: "#A8A4FF",
     buttonPrimaryText: "white",
-    buttonSecondaryBg: "635FC7",
-    buttonSecondaryText: "635FC7",
-    buttonSecondaryHover: "635FC7",
-    deleteButtonBg: "EA5555",
+    buttonSecondaryBg: "rgba(99, 95, 199, 0.1)",
+    buttonSecondaryText: "#635FC7",
+    buttonSecondaryHover: "rgba(99, 95, 199, 0.25)",
+    deleteButtonBg: "#EA5555",
     deleteButtonText: "white",
-    deleteButtonHover: "FF9898",
+    deleteButtonHover: "#FF9898",
 
 
     // text
@@ -40,7 +40,7 @@ export const light = {
     grey: "#828fa3",
     blue: "#635FC7",
     lightBlue: "#A8A4FF",
-
+    red: "#EA5555"
 }
 
 export const dark = {
@@ -67,13 +67,14 @@ export const dark = {
 
     // buttons
     buttonPrimaryBg: "#635FC7",
-    buttonPrimaryHover: "A8A4FF",
-    buttonSecondaryBg: "#635FC7",
+    buttonPrimaryHover: "#A8A4FF",
+    buttonPrimaryText: "white",
+    buttonSecondaryBg: "white",
     buttonSecondaryText: "#635FC7",
-    buttonSecondaryHover: "#635FC7",
-    deleteButtonBg: "EA5555",
-    deleteButtonHover: "FF9898",
-
+    buttonSecondaryHover: "rgba(255, 255, 255, 0.6)",
+    deleteButtonBg: "#EA5555",
+    deleteButtonText: "white",
+    deleteButtonHover: "#FF9898",
     // text
 
     textPrimary: "white",
@@ -84,5 +85,6 @@ export const dark = {
     grey: "#828fa3",
     blue: "#635FC7",
     lightBlue: "#A8A4FF",
+    red: "#EA5555"
     
 } 

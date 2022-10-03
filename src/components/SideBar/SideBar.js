@@ -15,8 +15,6 @@ const StyledSideBar = styled(motion.aside)`
   background-color: ${({ theme }) => theme.asideBg};
   z-index: 5;
   padding-top: 97px;
-  
-
 `;
 
 const SideBarContainer = styled.div`
@@ -27,7 +25,7 @@ const SideBarContainer = styled.div`
   border-right: 1px solid ${({ theme }) => theme.border};
   height: calc(100vh - 97px);
   padding-top: 23px;
-`
+`;
 
 const BoardTabsLength = styled.h6`
   color: ${({ theme }) => theme.grey};
@@ -40,7 +38,7 @@ const BoardTab = styled.button`
   transition-property: color, background-color;
 
   background-color: transparent;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.grey};
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
@@ -152,34 +150,42 @@ const SideBar = () => {
             exit="exit"
           >
             <SideBarContainer>
-            <div>
-              <BoardTabsLength>ALL BOARDS ({boardTabs.length})</BoardTabsLength>
-              <BoardsWrapper>
-                {boardTabs.map(({ name }) => (
-                  <BoardTab
-                    key={name}
-                    onClick={() => dispatch(toggleActiveBoard(name))}
-                    className={
-                      data.activeBoard === name ? "active" : "not-active"
-                    }
-                  >
-                    <BoardIcon />
-                    {name}
-                  </BoardTab>
-                ))}
-                <CreateBoardButton onClick={() => dispatch(openModal({ ModalsType: "add-board" }))}>
-                  <BoardIcon />
-                  +Create New Board
-                </CreateBoardButton>
-              </BoardsWrapper>
-            </div>
-            <Container>
-              <ThemeSwitcher />
-              <HideButton onClick={() => dispatch(toggleSidebar())}>
-                <HideIcon />
-                Hide Sidebar
-              </HideButton>
-            </Container>
+              <div>
+                <BoardTabsLength>
+                  ALL BOARDS ({boardTabs.length})
+                </BoardTabsLength>
+                <BoardsWrapper>
+                  {boardTabs.map(({ name }) => (
+                    <BoardTab
+                      key={name}
+                      onClick={() => dispatch(toggleActiveBoard(name))}
+                      className={
+                        data.activeBoard === name ? "active" : "not-active"
+                      }
+                    >
+                      <BoardIcon />
+                      {name}
+                    </BoardTab>
+                  ))}
+                  {boardTabs.length >= 8 ? null : (
+                    <CreateBoardButton
+                      onClick={() =>
+                        dispatch(openModal({ ModalsType: "add-board" }))
+                      }
+                    >
+                      <BoardIcon />
+                      +Create New Board
+                    </CreateBoardButton>
+                  )}
+                </BoardsWrapper>
+              </div>
+              <Container>
+                <ThemeSwitcher />
+                <HideButton onClick={() => dispatch(toggleSidebar())}>
+                  <HideIcon />
+                  Hide Sidebar
+                </HideButton>
+              </Container>
             </SideBarContainer>
           </StyledSideBar>
         )}
