@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import React from "react";
 import { closeModal } from "../../../features/modalSlice";
-import { deleteBoard } from "../../../features/boardTabsSlice";
+import { deleteBoard, deleteTask } from "../../../features/boardTabsSlice";
 import { modalAnimation } from "../AddBoard/AddBoardModal";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -70,18 +70,24 @@ const CancelButton = styled(DeleteButton)`
   }
 `
 
-const DeleteBoardModal = () => {
+const DeleteTaskModal = () => {
   const dispatch = useDispatch();
-  const activeBoard = useSelector(state => state.data.activeBoard);
-  
+  const { data, modal, boardTabs } = useSelector(state => state);
+  const { activeBoard } = data;
+
+
+  const { title, status } = modal.ModalsDetail;
+
+
+
   const handleDelete = () => {
-    dispatch(deleteBoard(activeBoard))
-    dispatch(closeModal())
+    dispatch(deleteTask({ title, status, activeBoard }))
+    handleCancel()
+
   }
 
   const handleCancel = () => {
     dispatch(closeModal())
-    
   }
 
   return (
@@ -90,8 +96,8 @@ const DeleteBoardModal = () => {
     initial="hidden"
     animate="visible"
     exit="exit">
-        <Title>Delete this board?</Title>
-        <Info>Are you sure you want to delete <span>{activeBoard}</span> board? This action will remove all columns and tasks and cannot be reversed.</Info>
+        <Title>Delete this Task?</Title>
+        <Info>Are you sure you want to delete {<span>{title}</span>}  task? This action will remove all columns and tasks and cannot be reversed.</Info>
         <ButtonsContainer>
           <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
           <CancelButton onClick={handleCancel}>Cancel</CancelButton>
@@ -100,4 +106,4 @@ const DeleteBoardModal = () => {
   );
 };
 
-export default DeleteBoardModal;
+export default DeleteTaskModal;

@@ -6,6 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import AddBoardModal from "./AddBoard/AddBoardModal";
 import DeleteBoardModal from "./DeleteBoard/DeleteBoardModal";
 import styled from "styled-components";
+import EditBoardModal from "./EditBoard/EditBoardModal";
+import AddTaskModal from "./AddTask/AddTaskModal";
+import ViewTaskModal from "./ViewTask/ViewTaskModal";
+import DeleteTaskModal from "./DeleteTask/DeleteTaskModal";
+import EditTaskModal from "./EditTask/EditTaskModal";
 
 const StyledOverlay = styled(motion.div)`
   position: fixed;
@@ -23,9 +28,11 @@ const Overlay = ({ onClick }) => {
 };
 
 const Modals = () => {
-  const { ModalsType, ModalsOpen, ModalsDetail } = useSelector(
+  
+  const { ModalsType, ModalsOpen } = useSelector(
     (state) => state.modal
   );
+
 
   const dispatch = useDispatch();
 
@@ -46,6 +53,12 @@ const Modals = () => {
       <AnimatePresence>
         {ModalsType === "add-board" && <AddBoardModal />}
         {ModalsType === "delete-board" && <DeleteBoardModal />}
+        {ModalsType === "edit-board" && <EditBoardModal />}
+        {ModalsType === "add-task" && <AddTaskModal/>}
+        {ModalsType === "view-task" && <ViewTaskModal/>}
+        {ModalsType === "delete-task" && <DeleteTaskModal/>}
+        {ModalsType === "edit-task" && <EditTaskModal/>}
+
         </AnimatePresence>
       <AnimatePresence>
         {ModalsOpen && <Overlay onClick={handleOverlayClick} />}

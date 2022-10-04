@@ -40,7 +40,9 @@ export const light = {
     grey: "#828fa3",
     blue: "#635FC7",
     lightBlue: "#A8A4FF",
-    red: "#EA5555"
+    red: "#EA5555",
+    normalTheme: "white",
+    editDropDown: "white"
 }
 
 export const dark = {
@@ -85,6 +87,7 @@ export const dark = {
     grey: "#828fa3",
     blue: "#635FC7",
     lightBlue: "#A8A4FF",
-    red: "#EA5555"
-    
+    red: "#EA5555",
+    normalTheme: "black",
+    editDropDown: "#20212C"
 } 

@@ -7,6 +7,7 @@ import { VerticalDotsIcon } from "../../assets";
 import { openModal } from "../../features/modalSlice";
 import styled from "styled-components";
 import { toggleActiveBoard } from "../../features/dataSlice";
+import EditDropDown from "../shared/EditDropDown/EditDropDown";
 
 const StyledNavbar = styled.aside`
   position: fixed;
@@ -30,7 +31,7 @@ const StyledNavbar = styled.aside`
 const DropDown = styled.div`
   position: absolute;
   top: 90%;
-  background-color: ${({theme}) => theme.bodyBg};
+  background-color: ${({ theme }) => theme.editDropDown};
   left: 0;
   right: 0;
   width: 100%;
@@ -41,7 +42,7 @@ const DropDown = styled.div`
   gap: 1rem;
   align-items: start;
   padding: 1rem;
-`
+`;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.textPrimary};
@@ -58,33 +59,19 @@ const ButtonsContainer = styled.div`
 
 const AddTaskButton = styled.button`
   border-radius: 20px;
-  padding: .9rem 1.3rem;
-  background-color: ${({theme}) => theme.buttonPrimaryBg};
+  padding: 0.9rem 1.3rem;
+  background-color: ${({ theme }) => theme.buttonPrimaryBg};
   color: white;
   font-weight: bold;
 
   &:hover {
-  background-color: ${({theme}) => theme.buttonPrimaryHover};
-    
+    background-color: ${({ theme }) => theme.buttonPrimaryHover};
   }
-  
-`
-const EditBoardButton = styled.button`
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: ${({theme}) => theme.grey};
-  background-color: transparent;
-  &:hover {
-    opacity: 0.7;
-  }
-`
+`;
 
-const DeleteBoardButton = styled(EditBoardButton)`
-    color: ${({theme}) => theme.red};
-`
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const state = useSelector((state) => state);
   const { data, boardTabs } = state;
   const dispatch = useDispatch();
@@ -93,22 +80,26 @@ const Navbar = () => {
   useEffect(() => {
     if (boardTabs.length === 0) {
       dispatch(toggleActiveBoard("No Boards Found"));
-    } 
+    }
 
-    let boardThatsActive = boardTabs.find(board => board.name === activeBoard)
+    let boardThatsActive = boardTabs.find(
+      (board) => board.name === activeBoard
+    );
 
-    if(!boardThatsActive && boardTabs.length){
+    if (!boardThatsActive && boardTabs.length) {
       dispatch(toggleActiveBoard(boardTabs.at(-1).name));
-      
     }
   }, [boardTabs.length]);
 
-
   const handleDeleteModal = () => {
-    dispatch(openModal({ ModalsType: "delete-board" }))
-    setOpen(false)
-  }
+    dispatch(openModal({ ModalsType: "delete-board" }));
+    setOpen(false);
+  };
 
+  const handleEditModal = () => {
+    dispatch(openModal({ ModalsType: "edit-board" }));
+    setOpen(false);
+  };
 
   return (
     <StyledNavbar>
@@ -116,12 +107,18 @@ const Navbar = () => {
       <Title>{activeBoard}</Title>
       {boardTabs.length !== 0 && (
         <ButtonsContainer>
-          <AddTaskButton>+Add New Task</AddTaskButton>
-          <VerticalDotsIcon onClick={() => setOpen(e => !e)} />
-          {open && <DropDown>
-            <EditBoardButton>Edit Board</EditBoardButton>
-            <DeleteBoardButton onClick={handleDeleteModal}>Delete Board</DeleteBoardButton>
-          </DropDown>}
+          <AddTaskButton
+            onClick={() => dispatch(openModal({ ModalsType: "add-task" }))}
+          >
+            +Add New Task
+          </AddTaskButton>
+          <VerticalDotsIcon onClick={() => setOpen((e) => !e)} />
+          {open && (
+            <EditDropDown
+              handleEditModal={handleEditModal}
+              handleDeleteModal={handleDeleteModal}
+            />
+          )}
         </ButtonsContainer>
       )}
     </StyledNavbar>

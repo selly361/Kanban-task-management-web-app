@@ -3,34 +3,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { CrossIcon } from "../../../assets";
+import ModalWrapper from "../ModalWrapper";
 import { addBoard } from "../../../features/boardTabsSlice";
 import { closeModal } from "../../../features/modalSlice";
-import { motion } from "framer-motion";
 import styled from "styled-components";
 import { toggleActiveBoard } from "../../../features/dataSlice";
 
-const StyledModal = styled(motion.div)`
-  width: 550px;
-  height: max-content;
-  background-color: ${({ theme }) => theme.taskBg};
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  z-index: 90;
-  display: flex;
-  padding: 2rem;
-  align-items: start;
-  flex-flow: column;
-  justify-content: center;
-  gap: 1rem;
-  border-radius: 10px;
-`;
-
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   color: ${({ theme }) => theme.grey};
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   background: transparent;
   color: ${({ theme }) => theme.textPrimary};
   font-size: 0.8125rem;
@@ -51,7 +34,7 @@ const StyledForm = styled.form`
   height: max-content;
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   color: ${({ theme }) => theme.textPrimary};
 `;
 
@@ -68,7 +51,7 @@ const InputContainer = styled.div`
   }
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   color: white;
   padding: 0.7rem 0;
   font-weight: bold;
@@ -82,7 +65,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const CreateColumnButton = styled(SubmitButton)`
+export const CreateColumnButton = styled(SubmitButton)`
   background-color: ${({ theme }) => theme.buttonSecondaryBg};
   color: ${({ theme }) => theme.buttonSecondaryText};
 
@@ -100,7 +83,7 @@ const CreateColumnButton = styled(SubmitButton)`
   }
 `;
 
-const ErrorMessage = styled.span`
+export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.red};
   position: absolute;
   right: 3rem;
@@ -120,6 +103,26 @@ export const modalAnimation = {
   },
 };
 
+
+export const hasDuplicates = (value, boardTabs) => {
+  return !Boolean(
+    boardTabs.find(
+      (board) => board.name.toLowerCase() === value.toLowerCase()
+    )
+  );
+};
+
+export const hasDuplicatesColumn = (value, columns) => {
+  let duplicatedColumns = columns.filter(
+    (column) => column.name.toLowerCase() === value.toLowerCase()
+  );
+
+  let duplicated = duplicatedColumns.length === 1;
+
+  return duplicated;
+};
+
+
 const AddBoardModal = () => {
   const dispatch = useDispatch();
   const boardTabs = useSelector((state) => state.boardTabs);
@@ -127,9 +130,6 @@ const AddBoardModal = () => {
     register,
     control,
     handleSubmit,
-    reset,
-    trigger,
-    setError,
     getValues,
     formState: { errors },
   } = useForm({
@@ -156,42 +156,19 @@ const AddBoardModal = () => {
     dispatch(toggleActiveBoard(getValues().name));
   };
 
-  const hasDuplicates = (value) => {
-    return !Boolean(
-      boardTabs.find(
-        (board) => board.name.toLowerCase() === value.toLowerCase()
-      )
-    );
-  };
 
-  const hasDuplicatesColumn = (value) => {
-    const { columns } = getValues();
 
-    let duplicatedColumns = columns.filter(
-      (column) => column.name.toLowerCase() === value.toLowerCase()
-    );
-
-    let duplicated = duplicatedColumns.length === 1;
-    console.log(duplicated);
-
-    return duplicated;
-  };
-
-  useEffect(() => {}, [getValues().columns]);
+  
 
   return (
-    <StyledModal            
-    variants={modalAnimation}
-    initial="hidden"
-    animate="visible"
-    exit="exit">
+    <ModalWrapper>
       <Title>Add New Board</Title>
       <StyledForm>
         <StyledLabel>Name</StyledLabel>
         <InputContainer>
           <StyledInput
             className={errors.name && "error"}
-            {...register("name", { required: true, validate: hasDuplicates })}
+            {...register("name", { required: true, validate: (value) => hasDuplicates(value, boardTabs) })}
           />
           {errors.name && (
             <ErrorMessage>
@@ -206,7 +183,7 @@ const AddBoardModal = () => {
               className={errors.columns?.[index]?.name && "error"}
               {...register(`columns.${index}.name`, {
                 required: true,
-                validate: hasDuplicatesColumn,
+                validate: (value) => hasDuplicatesColumn(value, getValues().columns),
               })}
             />
             {errors.columns?.[index]?.name.type == "required" && (
@@ -235,7 +212,7 @@ const AddBoardModal = () => {
           Create New Board
         </SubmitButton>
       </StyledForm>
-    </StyledModal>
+    </ModalWrapper>
   );
 };
 

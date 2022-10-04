@@ -1,5 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { openModal } from "../../features/modalSlice";
 
 const StyledTask = styled.div`
   width: 280px;
@@ -27,9 +29,21 @@ const TaskTitle = styled.h5`
 `;
 
 const Task = ({ subtasks, title, description, status }) => {
-  let completed = subtasks.filter((subTask) => subTask.isCompleted);
+  let completed = subtasks?.filter((subTask) => subTask.isCompleted);
+
+  const dispatch = useDispatch();
+
+  const handleTaskClick = () => {
+    dispatch(
+      openModal({
+        ModalsType: "view-task",
+        ModalsDetail: { title, status },
+      })
+    );
+  };
+
   return (
-    <StyledTask>
+    <StyledTask onClick={handleTaskClick}>
       <TaskTitle>{title}</TaskTitle>
       <SubTasksLength>
         {completed.length} of {subtasks.length}

@@ -45,8 +45,8 @@ const BoardColumn = ({ name, tasks, index }) => {
         ({tasks.length})
       </ColumnName>
       <TasksContainer className={tasks.length === 0 && "empty"}>
-        {tasks.map((task) => (
-          <Task key={task.title} {...task} />
+        {tasks.map((task, index) => (
+          <Task key={task.title + index} {...task} />
         ))}
       </TasksContainer>
     </StyledColumn>

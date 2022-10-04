@@ -26,6 +26,10 @@ export const GlobalStyle = createGlobalStyle`
       outline: none;
     }
 
+    input:focus, textarea:focus {
+      border-color: ${({theme}) => theme.blue};
+    }
+
     button, svg {
       cursor: pointer;
     }
