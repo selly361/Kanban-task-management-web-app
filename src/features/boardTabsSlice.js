@@ -18,7 +18,7 @@ export const boardTabsSlice = createSlice({
 
     addBoard: (state, action) => {
       console.log(action.payload);
-      state.push(action.payload);
+      state.unshift(action.payload);
     },
 
     editBoard: (state, action) => {
@@ -38,7 +38,7 @@ export const boardTabsSlice = createSlice({
       );
 
       if (columnIndex !== -1) {
-        columns[columnIndex]["tasks"].push(newTask);
+        columns[columnIndex]["tasks"].unshift(newTask);
       }
     },
 
@@ -60,7 +60,7 @@ export const boardTabsSlice = createSlice({
         } else if (newTask?.status !== column?.name) {
           column?.tasks.splice(taskIndex, 1);
 
-          newColumn?.tasks.push(newTask);
+          newColumn?.tasks.unshift(newTask);
         }
       } else {
         let t = newColumn?.tasks.find((task) => task.title === taskTitle);
@@ -81,7 +81,7 @@ export const boardTabsSlice = createSlice({
 
       } else if(newTask.status !== oldStatus) {
         oldColumn.tasks.splice(taskIndex, 1)
-        newColumn.tasks.push(newTask)
+        newColumn.tasks.unshift(newTask)
       }
       
     },

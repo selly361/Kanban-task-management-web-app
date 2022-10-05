@@ -3,7 +3,7 @@ import Task from "../Task/Task";
 import styled from "styled-components";
 
 const StyledColumn = styled.div`
-  width: 270px;
+  width: 300px;
   height: max-content;
   display: flex;
   flex-flow: column;
@@ -30,6 +30,7 @@ const TasksContainer = styled.div`
   gap: 1rem;
   min-height: 500px;
   border-radius: 10px;
+  width: 300px;
   
   &.empty {
     border: 2px dashed ${({ theme }) => theme.border};

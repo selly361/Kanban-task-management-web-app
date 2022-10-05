@@ -1,4 +1,5 @@
 import BoardColumn from "../BoardColumn/BoardColumn";
+import NewColumn from "../BoardColumn/NewColumn";
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -12,15 +13,12 @@ const StyledBoardBody = styled.div`
   padding-left: 20px;
   overflow: scroll;
   transition: 0.7s left ease;
-  width: calc(100vw - 300px);
   display: flex;
   gap: 3rem;
   padding-bottom: 2rem;
-
   &.close {
     padding-left: 2rem;
     left: 0;
-    width: 100vw;
   }
 `;
 const BoardBody = () => {
@@ -29,9 +27,12 @@ const BoardBody = () => {
   const boardTabs = state.boardTabs
 
   const BoardToDisplay = boardTabs.find(board => board.name === activeBoard)
+
+  console.log(BoardToDisplay.columns)
   return (
     <StyledBoardBody className={sideBarsOpen}>
         {BoardToDisplay?.columns.map((boardColumn, index) => <BoardColumn key={boardColumn.name} index={index} {...boardColumn} />)}
+         <NewColumn />
     </StyledBoardBody>
   )
 };

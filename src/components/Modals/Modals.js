@@ -4,13 +4,14 @@ import { closeModal, openModal } from "../../features/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import AddBoardModal from "./AddBoard/AddBoardModal";
-import DeleteBoardModal from "./DeleteBoard/DeleteBoardModal";
-import styled from "styled-components";
-import EditBoardModal from "./EditBoard/EditBoardModal";
+import AddColumnModal from "./AddColumn/AddColumnModal";
 import AddTaskModal from "./AddTask/AddTaskModal";
-import ViewTaskModal from "./ViewTask/ViewTaskModal";
+import DeleteBoardModal from "./DeleteBoard/DeleteBoardModal";
 import DeleteTaskModal from "./DeleteTask/DeleteTaskModal";
+import EditBoardModal from "./EditBoard/EditBoardModal";
 import EditTaskModal from "./EditTask/EditTaskModal";
+import ViewTaskModal from "./ViewTask/ViewTaskModal";
+import styled from "styled-components";
 
 const StyledOverlay = styled(motion.div)`
   position: fixed;
@@ -58,7 +59,7 @@ const Modals = () => {
         {ModalsType === "view-task" && <ViewTaskModal/>}
         {ModalsType === "delete-task" && <DeleteTaskModal/>}
         {ModalsType === "edit-task" && <EditTaskModal/>}
-
+        {ModalsType === "add-column" && <EditBoardModal/>}
         </AnimatePresence>
       <AnimatePresence>
         {ModalsOpen && <Overlay onClick={handleOverlayClick} />}

@@ -4,6 +4,7 @@ export const light = {
     asideBg: "white",
     taskBg: "white",
     scrollBg: "white",
+    NewColumn: "linear-gradient(to bottom,rgba(121,132,147,.2),rgba(130,143,163,.1),rgba(130,143,163,0))",
     // sub task checkbox
     subTaskCheckBoxBg: "#F4F7FD",
     subTaskCheckBoxHover: "#979797",
@@ -51,6 +52,7 @@ export const dark = {
     navBarBg: "#2B2C37",
     taskBg: "#2B2C37",
     scrollBg: "#2B2C37",
+    NewColumn: "linear-gradient(to bottom,rgba(121,132,147,.2),rgba(130,143,163,.1),rgba(130,143,163,0))",
     
     // sub task checkbox
     subTaskCheckBoxBg: "#20212C",
