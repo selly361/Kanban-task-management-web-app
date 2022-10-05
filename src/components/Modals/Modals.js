@@ -59,7 +59,7 @@ const Modals = () => {
         {ModalsType === "view-task" && <ViewTaskModal/>}
         {ModalsType === "delete-task" && <DeleteTaskModal/>}
         {ModalsType === "edit-task" && <EditTaskModal/>}
-        {ModalsType === "add-column" && <EditBoardModal/>}
+        {ModalsType === "new-column" && <EditBoardModal/>}
         </AnimatePresence>
       <AnimatePresence>
         {ModalsOpen && <Overlay onClick={handleOverlayClick} />}
