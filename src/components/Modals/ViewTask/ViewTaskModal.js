@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { CheckIcon, VerticalDotsIcon } from "../../../assets";
-import { viewTask } from "../../../features/boardTabsSlice";
+import React, { useEffect, useState } from "react";
 import { changeModalsDetail, openModal } from "../../../features/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useFieldArray, useForm } from "react-hook-form";
+
 import DropDown from "../../shared/DropDown/DropDown";
 import EditDropDown from "../../shared/EditDropDown/EditDropDown";
 import ModalWrapper from "../ModalWrapper";
+import styled from "styled-components";
+import { viewTask } from "../../../features/boardTabsSlice";
 
 const Title = styled.h4`
   color: ${({ theme }) => theme.textPrimary};
@@ -92,6 +93,17 @@ const CheckBox = styled.div`
     background: ${({ theme }) => theme.subTaskCheckBoxHover};
   }
 `;
+const TasksContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  gap: .5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 2rem 0;
+  padding-right: .3rem;
+`
+
 
 const ViewTaskModal = () => {
   const { modal, boardTabs, data } = useSelector((state) => state);
@@ -191,6 +203,7 @@ const ViewTaskModal = () => {
         Subtasks ( {subTasks.filter((task) => task.isCompleted).length} of
         {" " + subTasks.length} )
       </TextLabel>
+      <TasksContainer>
       {subTasks.map((subTask, index) => (
         <TaskContainer key={subTask.title + index} onClick={() => handleTaskClick(index)}>
           {
@@ -205,7 +218,7 @@ const ViewTaskModal = () => {
           </TaskTitle>
         </TaskContainer>
       ))}
-
+      </TasksContainer>
       <DropDown
         defaultStatus={statusData}
         onSetCurrentStatus={onSetCurrentStatus}

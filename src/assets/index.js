@@ -1,6 +1,7 @@
 export { ReactComponent as AddTaskIcon } from './icon-add-task-mobile.svg'
 export { ReactComponent as BoardIcon } from './icon-board.svg'
 export { ReactComponent as CheckIcon } from './icon-check.svg'
+export { ReactComponent as PurpleCheckIcon } from './purple-check-icon.svg'
 export { ReactComponent as ArrowDownIcon } from './icon-chevron-down.svg'
 export { ReactComponent as ArrowUpIcon } from './icon-chevron-up.svg'
 export { ReactComponent as CrossIcon } from './icon-cross.svg'

@@ -12,10 +12,11 @@ const StyledBoardBody = styled.div`
   left: 300px;
   padding-left: 20px;
   overflow: scroll;
-  transition: 0.7s left ease;
+  transition: 1s left ease;
   display: flex;
   gap: 3rem;
   padding-bottom: 2rem;
+  padding-right: 1rem;
   &.close {
     padding-left: 2rem;
     left: 0;

@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;        
         font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 14px;
     }
 
     *:focus, *:active {
@@ -80,5 +81,12 @@ export const GlobalStyle = createGlobalStyle`
 
     .column-6 {
       background-color: #c36e6e; 
+    }
+
+
+    @media (min-width: 1400px){
+      * {
+        font-size: 18px;
+      }
     }
 `;

@@ -124,11 +124,11 @@ const animation = {
   },
   visible: {
     x: 0,
-    transition: { type: "spring", duration: 1, bounce: 0.05 },
+    transition: { type: "spring", duration: 1.3, bounce: 0 },
   },
   exit: {
     x: "-100vw",
-    transition: { duration: 1 },
+    transition: { duration: 1.3 },
   },
 };
 

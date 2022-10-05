@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { CrossIcon } from "../../../assets";
-import { editTask } from "../../../features/boardTabsSlice";
-import { closeModal } from "../../../features/modalSlice";
-import DropDown from "../../shared/DropDown/DropDown";
 import {
   ErrorMessage,
   StyledInput,
   SubmitButton,
   Title,
 } from "../AddBoard/AddBoardModal";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useFieldArray, useForm } from "react-hook-form";
+
+import { CrossIcon } from "../../../assets";
+import DropDown from "../../shared/DropDown/DropDown";
 import ModalWrapper from "../ModalWrapper";
+import { closeModal } from "../../../features/modalSlice";
+import { editTask } from "../../../features/boardTabsSlice";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ const StyledLabel = styled.label`
 `;
 
 const DescInput = styled.textarea`
-  height: 100px;
+  height: max-content;
   background: transparent;
   color: ${({ theme }) => theme.textPrimary};
   font-size: 0.8125rem;
@@ -53,10 +54,10 @@ const DescInput = styled.textarea`
 const AddSubtaskButton = styled.button`
   background-color: ${({ theme }) => theme.buttonSecondaryBg};
   color: ${({ theme }) => theme.buttonSecondaryText};
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   font-weight: bold;
   border-radius: 3rem;
-  width: 95%;
+  width: 100%;
   &:hover {
     background-color: ${({ theme }) => theme.buttonSecondaryHover};
   }

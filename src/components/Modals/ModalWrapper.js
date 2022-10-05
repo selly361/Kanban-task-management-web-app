@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const StyledModal = styled(motion.div)`
-  width: 550px;
+  width: 600px;
   height: max-content;
   background-color: ${({ theme }) => theme.taskBg};
   position: fixed;
@@ -17,6 +17,7 @@ const StyledModal = styled(motion.div)`
   justify-content: center;
   gap: 1rem;
   border-radius: 10px;
+  overflow-y: scroll;
 `;
 
 export const modalAnimation = {

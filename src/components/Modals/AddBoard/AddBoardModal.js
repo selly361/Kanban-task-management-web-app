@@ -53,13 +53,13 @@ const InputContainer = styled.div`
 
 export const SubmitButton = styled.button`
   color: white;
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   font-weight: bold;
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.buttonPrimaryBg};
   transition: 1s ease;
   transition-property: color, background-color;
-  width: 95%;
+  width: 100%;
   &:hover {
     background-color: ${({ theme }) => theme.buttonPrimaryHover};
   }
