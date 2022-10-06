@@ -67,7 +67,7 @@ const BoardsWrapper = styled.div`
   gap: 0.2rem;
 `;
 
-const CreateBoardButton = styled(BoardTab)`
+ const CreateBoardButton = styled(BoardTab)`
   color: ${({ theme }) => theme.blue};
   transition: opacity 0.3s ease;
 

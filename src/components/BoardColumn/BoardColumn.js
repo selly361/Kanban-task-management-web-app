@@ -41,7 +41,7 @@ const BoardColumn = ({ name, tasks, index }) => {
   return (
     <StyledColumn>
       <ColumnName>
-        <CircleStatus className={`column-${index + 1}`} />
+        <CircleStatus className={`color-${index + 1}`} />
         {name}
         ({tasks.length})
       </ColumnName>

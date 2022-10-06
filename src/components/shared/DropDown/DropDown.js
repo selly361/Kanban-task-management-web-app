@@ -47,7 +47,6 @@ const Selector = styled.li`
   transition-property: background-color, color;
   padding-bottom: .6rem;
   cursor: pointer;
-  border-bottom: 1px solid ${({ theme }) => theme.blue};
   
   &:hover {
     color: ${({ theme }) => theme.grey};
@@ -102,9 +101,9 @@ const DropDown = ({ onSetCurrentStatus, columns, defaultStatus }) => {
       {open && (
         <Overlay onClick={() => setOpen(false)}>
           <StyledDropDown>
-            {columns.map((column) => (
+            {columns.map((column, index) => (
               <Selector
-                className={column.name === selected && "selected"}
+                className={ column.name === selected && "selected"}
                 key={column.name}
                 onClick={() => {
                   setOpen(false);

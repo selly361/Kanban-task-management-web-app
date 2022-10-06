@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         margin: 0;        
         font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 14px;
     }
 
     *:focus, *:active {
@@ -27,8 +26,13 @@ export const GlobalStyle = createGlobalStyle`
       outline: none;
     }
 
+    button:disabled {
+      opacity: 0.3;
+    cursor: not-allowed;
+    }
+
     input:focus, textarea:focus {
-      border-color: ${({theme}) => theme.blue};
+      border-color: ${({ theme }) => theme.blue};
     }
 
     button, svg {
@@ -43,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar {
       width: 10px;
       height: 10%;
-      background: ${({theme}) => theme.bodyBg};
+      background: ${({ theme }) => theme.bodyBg};
     }
     ::-webkit-scrollbar-track {
       -webkit-border-radius: 10px;
@@ -52,36 +56,60 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb {
       -webkit-border-radius: 10px;
       border-radius: 5px;
-      background: ${({theme}) => theme.scrollBg};
+      background: ${({ theme }) => theme.scrollBg};
     }
 
 
-    .column-1 {
+    .color-1 {
       background-color: #49C4E5; 
     }
 
-    .column-2 {
+    .color-2 {
       background-color: #8471F2; 
     }
 
 
-    .column-3 {
+    .color-3 {
       background-color: #67E2AE; 
     }
 
 
-    .column-4 {
+    .color-4 {
       background-color: #e5a449; 
     }
 
 
-    .column-5 {
+    .color-5 {
       background-color: #2a3fdb; 
     }
 
-    .column-6 {
+    .color-6 {
       background-color: #c36e6e; 
     }
+
+    .selector-1 {
+      border-bottom: 1px solid #49C4E5;
+    }
+  .selector-2 {
+    border-bottom: 1px solid #8471F2;
+  
+}
+.selector-3 {
+  border-bottom: 1px solid #67E2AE;
+
+}
+.selector-4 {
+  border-bottom: 1px solid #e5a449;
+
+}
+.selector-5 {
+  border-bottom: 1px solid #2a3fdb;
+
+}
+.selector-6 {
+  border-bottom: 1px solid #c36e6e;
+
+}
 
 
     @media (min-width: 1400px){

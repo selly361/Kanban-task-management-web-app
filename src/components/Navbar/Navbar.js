@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { addBoard, deleteBoard } from "../../features/boardTabsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+import EditDropDown from "../shared/EditDropDown/EditDropDown";
 import Logo from "../shared/Logo/Logo";
 import { VerticalDotsIcon } from "../../assets";
 import { openModal } from "../../features/modalSlice";
 import styled from "styled-components";
 import { toggleActiveBoard } from "../../features/dataSlice";
-import EditDropDown from "../shared/EditDropDown/EditDropDown";
 
 const StyledNavbar = styled.aside`
   position: fixed;
@@ -67,8 +67,11 @@ const AddTaskButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.buttonPrimaryHover};
   }
-`;
 
+  &:disabled:hover {
+    background-color: ${({ theme }) => theme.buttonPrimaryBg};
+  }
+`;
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -105,22 +108,26 @@ const Navbar = () => {
     <StyledNavbar>
       <Logo />
       <Title>{activeBoard}</Title>
-      {boardTabs.length !== 0 && (
-        <ButtonsContainer>
-          <AddTaskButton
-            onClick={() => dispatch(openModal({ ModalsType: "add-task" }))}
-          >
-            +Add New Task
-          </AddTaskButton>
+      <ButtonsContainer>
+        <AddTaskButton
+          onClick={() => {
+            boardTabs.length === 0
+              ? dispatch(openModal({ ModalsType: "add-board" }))
+              : dispatch(openModal({ ModalsType: "add-task" }));
+          }}
+        >
+          {boardTabs.length === 0 ? "+Add New Board" : "+Add New Task"}
+        </AddTaskButton>
+        {boardTabs.length !== 0 && (
           <VerticalDotsIcon onClick={() => setOpen((e) => !e)} />
-          {open && (
-            <EditDropDown
-              handleEditModal={handleEditModal}
-              handleDeleteModal={handleDeleteModal}
-            />
-          )}
-        </ButtonsContainer>
-      )}
+        )}
+        {open && (
+          <EditDropDown
+            handleEditModal={handleEditModal}
+            handleDeleteModal={handleDeleteModal}
+          />
+        )}
+      </ButtonsContainer>
     </StyledNavbar>
   );
 };

@@ -17,7 +17,6 @@ export const boardTabsSlice = createSlice({
     },
 
     addBoard: (state, action) => {
-      console.log(action.payload);
       state.unshift(action.payload);
     },
 
@@ -70,7 +69,6 @@ export const boardTabsSlice = createSlice({
 
     editTask: (state, action) => {
       const { activeBoard, newTask, oldStatus } = action.payload;
-      console.log(newTask.status, oldStatus)
       let currentBoard = state.find((board) => board.name === activeBoard);
       let newColumn = currentBoard.columns.find((column) => column.name === newTask.status);
       let oldColumn = currentBoard.columns.find((column) => column.name === oldStatus);

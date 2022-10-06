@@ -1,21 +1,22 @@
-import React from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { CrossIcon } from "../../../assets";
-import { editBoard } from "../../../features/boardTabsSlice";
-import { toggleActiveBoard } from "../../../features/dataSlice";
-import { closeModal } from "../../../features/modalSlice";
 import {
-  hasDuplicatesColumn,
   CreateColumnButton,
-  SubmitButton,
+  ErrorMessage,
   StyledInput,
   StyledLabel,
+  SubmitButton,
   Title,
-  ErrorMessage,
+  hasDuplicatesColumn,
 } from "../AddBoard/AddBoardModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useFieldArray, useForm } from "react-hook-form";
+
+import { CrossIcon } from "../../../assets";
 import ModalWrapper from "../ModalWrapper";
+import React from "react";
+import { closeModal } from "../../../features/modalSlice";
+import { editBoard } from "../../../features/boardTabsSlice";
+import styled from "styled-components";
+import { toggleActiveBoard } from "../../../features/dataSlice";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -124,7 +125,6 @@ const EditBoardModal = () => {
           try {
             onSubmit();
           } catch (e) {
-            console.log(e)
           }
 
         })}

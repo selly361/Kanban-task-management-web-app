@@ -11,7 +11,7 @@ const getTheme = () =>
 const initialState = {
   theme: getTheme(),
   activeBoard: getLocalStorage("active-board") || "Platform Launch",
-  sideBarsOpen: getLocalStorage("sidebars-open") || "open",
+  sideBarsOpen: getLocalStorage("sidebars-open") || "close",
 };
 
 export const dataSlice = createSlice({

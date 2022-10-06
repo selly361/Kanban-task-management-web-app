@@ -1,8 +1,8 @@
+import { deleteBoard, deleteTask } from "../../../features/boardTabsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import React from "react";
 import { closeModal } from "../../../features/modalSlice";
-import { deleteBoard, deleteTask } from "../../../features/boardTabsSlice";
 import { modalAnimation } from "../AddBoard/AddBoardModal";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -11,7 +11,7 @@ const StyledModal = styled(motion.div)`
   width: 500px;
   height: max-content;
   background-color: ${({ theme }) => theme.taskBg};
-  position: absolute;
+  position: fixed;
   inset: 0;
   margin: auto;
   z-index: 90;
