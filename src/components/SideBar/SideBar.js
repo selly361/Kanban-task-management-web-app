@@ -15,6 +15,12 @@ const StyledSideBar = styled(motion.aside)`
   background-color: ${({ theme }) => theme.asideBg};
   z-index: 5;
   padding-top: 97px;
+  bottom: 0;
+  top: 0;
+
+  @media (max-width: 1000px){
+    display: none;
+  }
 `;
 
 const SideBarContainer = styled.div`

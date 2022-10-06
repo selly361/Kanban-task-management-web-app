@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledModal = styled(motion.div)`
   width: 600px;
+  max-height: 600px;
   height: max-content;
   background-color: ${({ theme }) => theme.taskBg};
   position: fixed;
@@ -11,13 +12,22 @@ const StyledModal = styled(motion.div)`
   margin: auto;
   z-index: 90;
   display: flex;
-  padding: 2rem;
+  padding: 2rem 1rem;
   align-items: start;
   flex-flow: column;
-  justify-content: center;
-  gap: 1rem;
-  border-radius: 10px;
-  overflow-y: scroll;
+  gap: 1.5rem;
+  border-radius: 5px;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme.bodyBg};
+    }
+
+    ::-webkit-scrollbar {
+      background: ${({ theme }) => theme.scrollBg};
+    }
+
+
 `;
 
 export const modalAnimation = {

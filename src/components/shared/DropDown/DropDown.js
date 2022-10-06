@@ -14,7 +14,7 @@ const StyledDropDownInput = styled.div`
   background: transparent;
   color: ${({ theme }) => theme.textPrimary};
   font-size: 0.8125rem;
-  padding: 1rem;
+  padding: .8rem;
   border-radius: 4px;
   border: 1px solid rgba(130, 143, 163, 0.4);
   resize: none;

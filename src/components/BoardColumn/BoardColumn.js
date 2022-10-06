@@ -1,3 +1,4 @@
+import NewColumn from "./NewColumn";
 import React from "react";
 import Task from "../Task/Task";
 import styled from "styled-components";
@@ -31,7 +32,7 @@ const TasksContainer = styled.div`
   min-height: 500px;
   border-radius: 10px;
   width: 300px;
-  
+
   &.empty {
     border: 2px dashed ${({ theme }) => theme.border};
   }
@@ -39,18 +40,19 @@ const TasksContainer = styled.div`
 
 const BoardColumn = ({ name, tasks, index }) => {
   return (
-    <StyledColumn>
-      <ColumnName>
-        <CircleStatus className={`color-${index + 1}`} />
-        {name}
-        ({tasks.length})
-      </ColumnName>
-      <TasksContainer className={tasks.length === 0 && "empty"}>
-        {tasks.map((task, index) => (
-          <Task key={task.title + index} {...task} />
-        ))}
-      </TasksContainer>
-    </StyledColumn>
+    <>
+      <StyledColumn>
+        <ColumnName>
+          <CircleStatus className={`color-${index + 1}`} />
+          {name}({tasks.length})
+        </ColumnName>
+        <TasksContainer className={tasks.length === 0 && "empty"}>
+          {tasks.map((task, index) => (
+            <Task key={task.title + index} {...task} />
+          ))}
+        </TasksContainer>
+      </StyledColumn>
+    </>
   );
 };
 

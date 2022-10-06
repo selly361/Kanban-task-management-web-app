@@ -5,7 +5,7 @@ import { openModal } from "../../features/modalSlice";
 import styled from "styled-components";
 
 const StyledNewColumn = styled.div`
-  width: 270px;
+  min-width: 300px;
   display: grid;
   place-items: center;
   font-size: 2rem;

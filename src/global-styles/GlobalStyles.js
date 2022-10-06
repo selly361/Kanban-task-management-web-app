@@ -26,9 +26,14 @@ export const GlobalStyle = createGlobalStyle`
       outline: none;
     }
 
-    button:disabled {
+    button:disabled{
       opacity: 0.3;
     cursor: not-allowed;
+    }
+
+    input:disabled  {
+      opacity: 0.3;
+      
     }
 
     input:focus, textarea:focus {

@@ -11,7 +11,7 @@ const StyledBoardBody = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.bodyBg};
   top: 120px;
-  min-height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
   left: 300px;
   padding-left: 20px;
   overflow: scroll;
@@ -20,17 +20,24 @@ const StyledBoardBody = styled.div`
   gap: 3rem;
   padding-bottom: 2rem;
   padding-right: 1rem;
-  min-width: calc(100vw - 300px);
+  max-width: calc(100vw - 300px);
+  margin: auto;
   &.close {
     padding-left: 2rem;
-    min-width: 100vw;
     left: 0;
+  max-width: 100vw;
   }
 
   &.no-boards {
     display: grid;
     place-items: center;
   }
+
+  @media (max-width: 1000px){
+    & {
+      max-width: 100vw;
+    }
+}
 `;
 
 const NewBoardText = styled.h2`
@@ -53,6 +60,11 @@ const CreateBoardButton = styled.button`
   }
 `;
 
+const Gap = styled.div`
+  width: 300px;
+  height: 800px;
+`
+
 const BoardBody = () => {
   const state = useSelector((state) => state);
   const { sideBarsOpen, activeBoard } = state.data;
@@ -74,8 +86,9 @@ const BoardBody = () => {
           </CreateBoardButton>
         </div>
       )}
-      {BoardToDisplay?.columns.map((boardColumn, index) => (
-        <BoardColumn key={boardColumn.name} index={index} {...boardColumn} />
+      {BoardToDisplay?.columns.map((boardColumn, index, arr) => (
+        <BoardColumn key={boardColumn.name} maxLength={arr.length - 1} index={index} {...boardColumn} />
+        
       ))}
       <NewColumn />
     </StyledBoardBody>

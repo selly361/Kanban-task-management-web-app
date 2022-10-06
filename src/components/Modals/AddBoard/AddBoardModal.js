@@ -16,13 +16,17 @@ export const StyledLabel = styled.label`
 export const StyledInput = styled.input`
   background: transparent;
   color: ${({ theme }) => theme.textPrimary};
-  font-size: 0.8125rem;
+  font-size: .9rem;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: 1px solid rgba(130, 143, 163, 0.4);
   width: 95%;
   &.error {
     border-color: ${({ theme }) => theme.textFieldError};
+  }
+
+  &.title {
+    width: 100%;
   }
 `;
 
@@ -53,7 +57,7 @@ const InputContainer = styled.div`
 
 export const SubmitButton = styled.button`
   color: white;
-  padding: 0.5rem 0;
+  padding: 0.7rem 0;
   font-weight: bold;
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.buttonPrimaryBg};
@@ -135,7 +139,7 @@ const AddBoardModal = () => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      columns: [{ name: "", tasks: [] }],
+      columns: [{ name: "Todo", tasks: [] }, { name: "Doing", tasks: [] }],
       name: "",
     },
   });
@@ -167,6 +171,7 @@ const AddBoardModal = () => {
         <StyledLabel>Name</StyledLabel>
         <InputContainer>
           <StyledInput
+            placeholder="e.g. Web Design"
             className={errors.name && "error"}
             {...register("name", { required: true, validate: (value) => hasDuplicates(value, boardTabs) })}
           />

@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { CrossIcon } from "../../../assets";
-import { addTask } from "../../../features/boardTabsSlice";
-import { closeModal } from "../../../features/modalSlice";
-import DropDown from "../../shared/DropDown/DropDown";
 import {
   ErrorMessage,
   StyledInput,
   SubmitButton,
   Title,
 } from "../AddBoard/AddBoardModal";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useFieldArray, useForm } from "react-hook-form";
+
+import { CrossIcon } from "../../../assets";
+import DropDown from "../../shared/DropDown/DropDown";
 import ModalWrapper from "../ModalWrapper";
+import { addTask } from "../../../features/boardTabsSlice";
+import { closeModal } from "../../../features/modalSlice";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -29,7 +30,6 @@ export const Wrapper = styled.div`
 
 const StyledLabel = styled.label`
   color: ${({ theme }) => theme.textPrimary};
-  font-size: 0.8rem;
   font-weight: bold;
 `;
 
@@ -37,11 +37,11 @@ const DescInput = styled.textarea`
   height: 100px;
   background: transparent;
   color: ${({ theme }) => theme.textPrimary};
-  font-size: 0.8125rem;
+  font-size: .9rem;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: 1px solid rgba(130, 143, 163, 0.4);
-  width: 95%;
+  width: 100%;
   resize: none;
   outline: none;
 
@@ -56,7 +56,7 @@ const AddSubtaskButton = styled.button`
   padding: 0.7rem 0;
   font-weight: bold;
   border-radius: 3rem;
-  width: 95%;
+  width: 100%;
   &:hover {
     background-color: ${({ theme }) => theme.buttonSecondaryHover};
   }
@@ -112,7 +112,7 @@ const AddTaskModal = () => {
       title: "",
       description: "",
       status: board.columns[0].name,
-      subtasks: [{ title: "", isCompleted: false }],
+      subtasks: [{ title: "", isCompleted: false }, { title: "", isCompleted: false }],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -136,7 +136,8 @@ const AddTaskModal = () => {
       <StyledLabel>Title</StyledLabel>
       <Wrapper>
         <StyledInput
-          className={errors.title && "error"}
+        placeholder="e.g. Take coffee break"  
+          className={"title " + (errors.title && "error")}
           {...register("title", {
             required: true,
             validate: (value) => duplicatedSubtasks(value, data.activeBoard, boardTabs, getValues().status)
@@ -153,6 +154,7 @@ const AddTaskModal = () => {
       <StyledLabel>Description</StyledLabel>
       <Wrapper>
         <DescInput
+          placeholder="e.g. Its always good to take a break. This 15 minutes break will recharge the batteries a little."
           className={errors.description && "error"}
           {...register("description", {
           })}
@@ -162,6 +164,7 @@ const AddTaskModal = () => {
       {fields.map((item, index, arr) => (
         <Wrapper key={item.id}>
           <StyledInput
+            placeholder={index === 0 ? "e.g. Make coffee" : index === 1 ? "e.g. Drink coffee and smile :)" : null}
             className={errors.subtasks?.[index]?.title && "error"}
             {...register(`subtasks.${index}.title`, {
               required: true,

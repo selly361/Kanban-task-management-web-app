@@ -14,6 +14,7 @@ const StyledNavbar = styled.aside`
   width: 100vw;
   height: 97px;
   left: 0px;
+  right: 0;
   top: 0px;
   border-bottom: 1px solid ${({ theme }) => theme.border};
   background-color: ${({ theme }) => theme.asideBg};

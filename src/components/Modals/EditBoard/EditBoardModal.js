@@ -28,7 +28,14 @@ export const Wrapper = styled.div`
   svg {
     cursor: pointer;
     transform: scale(0.8);
+
+
+    &.block {
+      opacity: 0.4;
+    }
   }
+
+  
 `;
 
 const hasDuplicatesBoardEdit = (value, boardTabs, activeBoard) => {
@@ -42,7 +49,7 @@ const hasDuplicatesBoardEdit = (value, boardTabs, activeBoard) => {
   return isDuplicated;
 };
 
-const EditBoardModal = () => {
+const EditBoardModal = ({ type }) => {
   const { boardTabs, data } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { activeBoard } = data;
@@ -70,16 +77,17 @@ const EditBoardModal = () => {
   const onSubmit = () => {
     const { name, columns } = getValues();
     dispatch(editBoard({ boardToEdit: { name, columns }, activeBoard }));
-    dispatch(toggleActiveBoard(name))
-    dispatch(closeModal())
+    dispatch(toggleActiveBoard(name));
+    dispatch(closeModal());
   };
 
   return (
     <ModalWrapper>
-      <Title>Edit Board</Title>
+      <Title>{!type ? "Edit Board" : "Add New Column"}</Title>
       <StyledLabel>Name</StyledLabel>
       <Wrapper>
         <StyledInput
+          disabled={type}
           className={errors.name && "error"}
           {...register("name", {
             required: true,
@@ -110,7 +118,15 @@ const EditBoardModal = () => {
           {errors.columns?.[index]?.name.type == "validate" && (
             <ErrorMessage>Used</ErrorMessage>
           )}
-          {arr.length !== 1 && <CrossIcon onClick={() => remove(index)} />}
+          {type ? (
+            index + 1 <= boardToEdit.columns.length ? (
+              <CrossIcon className="block" />
+            ) : (
+              <CrossIcon onClick={() => remove(index)} />
+            )
+          ) : (
+            arr.length !== 1 && <CrossIcon onClick={() => remove(index)} />
+          )}
         </Wrapper>
       ))}
       <CreateColumnButton
@@ -124,9 +140,7 @@ const EditBoardModal = () => {
         onClick={handleSubmit((e) => {
           try {
             onSubmit();
-          } catch (e) {
-          }
-
+          } catch (e) {}
         })}
       >
         Save Changes
