@@ -17,6 +17,10 @@ const LogoWrapper = styled.div`
   border-right: 1px solid ${({theme}) => theme.border};
   z-index: 10;
 
+  @media (max-width: 1000px){
+    display: none;
+  }
+
 `;
 
 const Logo = () => {

@@ -29,6 +29,8 @@ const StyledBoardBody = styled.div`
   }
 
   &.no-boards {
+    width: 100vw;
+    height: 100vh;
     display: grid;
     place-items: center;
   }
@@ -36,6 +38,9 @@ const StyledBoardBody = styled.div`
   @media (max-width: 1000px){
     & {
       max-width: 100vw;
+      left: 0;
+      margin: 0;
+      right: 0;
     }
 }
 `;

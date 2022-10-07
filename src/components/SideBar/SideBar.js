@@ -19,7 +19,9 @@ const StyledSideBar = styled(motion.aside)`
   top: 0;
 
   @media (max-width: 1000px){
-    display: none;
+    & {
+      display: none;
+    }
   }
 `;
 
@@ -121,6 +123,10 @@ const ShowButton = styled(motion.button)`
 
   &:hover {
     background-color: ${({ theme }) => theme.lightBlue};
+  }
+
+  @media (max-width: 1000px){
+    display: none;
   }
 `;
 

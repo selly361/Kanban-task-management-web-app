@@ -1,13 +1,13 @@
+import { ArrowDownIcon, MobileLogoIcon, VerticalDotsIcon } from "../../assets";
 import React, { useEffect, useState } from "react";
 import { addBoard, deleteBoard } from "../../features/boardTabsSlice";
+import { toggleActiveBoard, toggleSidebar } from "../../features/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import EditDropDown from "../shared/EditDropDown/EditDropDown";
 import Logo from "../shared/Logo/Logo";
-import { VerticalDotsIcon } from "../../assets";
 import { openModal } from "../../features/modalSlice";
 import styled from "styled-components";
-import { toggleActiveBoard } from "../../features/dataSlice";
 
 const StyledNavbar = styled.aside`
   position: fixed;
@@ -27,26 +27,28 @@ const StyledNavbar = styled.aside`
   z-index: 6;
   justify-content: space-between;
   align-items: center;
+  
+  @media (max-width: 1000px){
+    padding-left: 10px;
+}
 `;
 
-const DropDown = styled.div`
-  position: absolute;
-  top: 90%;
-  background-color: ${({ theme }) => theme.editDropDown};
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100px;
-  border-radius: 10px;
-  display: flex;
-  flex-flow: column;
-  gap: 1rem;
-  align-items: start;
-  padding: 1rem;
+const MobileLogo = styled.div`
+  display: none;
+
+  @media (max-width: 1000px) {
+    display: block;
+  }
 `;
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.textPrimary};
+
+ @media (max-width: 1000px){
+  &.remove {
+    display: none; 
+  }
+ }
 `;
 
 const ButtonsContainer = styled.div`
@@ -74,10 +76,41 @@ const AddTaskButton = styled.button`
   }
 `;
 
+const Wrapper = styled.div`
+  display: none;
+
+
+  @media (max-width: 1000px){
+    display: flex;
+    gap: 1rem;
+  align-items: center;
+
+  svg {
+   
+  }
+  }
+`
+
+const OpenSideBarModal = styled.button`
+  display: flex;
+  gap: 1rem;
+  background-color: transparent;
+  align-items: center;
+`
+
+const Arrow = styled(ArrowDownIcon)`
+  transform: scale(1.5);
+  transition: 1s ease transform;
+
+  &.active {
+    transform: scale(1.5) rotate(180deg);
+  }
+`
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const state = useSelector((state) => state);
-  const { data, boardTabs } = state;
+  const { data, boardTabs, modal } = state;
   const dispatch = useDispatch();
   const { activeBoard } = data;
 
@@ -105,10 +138,26 @@ const Navbar = () => {
     setOpen(false);
   };
 
+
+  let isMob = window.matchMedia('(max-width: 1000px)').matches
+
+  let active = modal?.ModalsType === "sidebar-modal"
   return (
     <StyledNavbar>
       <Logo />
-      <Title>{activeBoard}</Title>
+      <Title className="remove">{activeBoard}</Title>
+      <Wrapper>
+        <MobileLogo>
+          <MobileLogoIcon />
+        </MobileLogo>
+        <OpenSideBarModal onClick={() => {
+          dispatch(openModal({ ModalsType: "sidebar-modal" }))
+        }}>
+        <Title>{activeBoard}</Title>
+        <Arrow className={active && "active"} />
+        
+        </OpenSideBarModal>
+      </Wrapper>
       <ButtonsContainer>
         <AddTaskButton
           onClick={() => {

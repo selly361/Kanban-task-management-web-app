@@ -28,6 +28,13 @@ const StyledModal = styled(motion.div)`
     }
 
 
+    @media (max-width: 703px){
+      & {
+        width: 95vw;
+      }
+    }
+
+
 `;
 
 export const modalAnimation = {
