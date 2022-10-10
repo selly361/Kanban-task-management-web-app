@@ -20,12 +20,12 @@ const StyledBoardBody = styled.div`
   gap: 3rem;
   padding-bottom: 2rem;
   padding-right: 1rem;
-  max-width: calc(100vw - 300px);
+ width: calc(100vw - 300px);
   margin: auto;
   &.close {
     padding-left: 2rem;
     left: 0;
-  max-width: 100vw;
+ width: 100vw;
   }
 
   &.no-boards {

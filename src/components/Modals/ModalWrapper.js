@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledModal = styled(motion.div)`
   width: 600px;
-  max-height: 600px;
+  max-height: 90vh;
   height: max-content;
   background-color: ${({ theme }) => theme.taskBg};
   position: fixed;

@@ -22,6 +22,12 @@ const StyledModal = styled(motion.div)`
   justify-content: center;
   gap: 3rem;
   border-radius: 10px;
+
+  @media (max-width: 703px){
+      & {
+        width: 95vw;
+      }
+    }
 `;
 
 const Title = styled.h3`

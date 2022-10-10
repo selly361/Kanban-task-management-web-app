@@ -45,6 +45,9 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.textPrimary};
 
  @media (max-width: 1000px){
+  & {
+    font-size: 1rem;
+  }
   &.remove {
     display: none; 
   }
@@ -73,6 +76,14 @@ const AddTaskButton = styled.button`
 
   &:disabled:hover {
     background-color: ${({ theme }) => theme.buttonPrimaryBg};
+  }
+
+
+  @media (max-width: 600px){
+    & {
+      font-size: .8rem;
+      padding: 0.5rem 0.9rem;
+    }
   }
 `;
 
@@ -166,7 +177,7 @@ const Navbar = () => {
               : dispatch(openModal({ ModalsType: "add-task" }));
           }}
         >
-          {boardTabs.length === 0 ? "+Add New Board" : "+Add New Task"}
+          {boardTabs.length === 0 ? "+New Board" : "+New Task"}
         </AddTaskButton>
         {boardTabs.length !== 0 && (
           <VerticalDotsIcon onClick={() => setOpen((e) => !e)} />

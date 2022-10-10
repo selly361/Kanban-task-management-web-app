@@ -7,7 +7,7 @@ const DropDown = styled.div`
   background-color: ${({ theme }) => theme.editDropDown};
   left: 0;
   right: 0;
-  width: 100%;
+  width: max-content;
   height: 100px;
   border-radius: 10px;
   display: flex;

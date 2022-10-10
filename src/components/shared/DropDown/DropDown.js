@@ -67,12 +67,16 @@ const StyledDropDown = styled.div`
   gap: 1rem;
   box-shadow: 0 0 8px #364e7e1a;
   position: fixed;
-  width: 40%;
+  width: 500px;
   height: max-content;
   inset: 0;
   margin: auto;
   z-index: 200;
   border-radius: 10px;
+
+  @media (max-width: 800px){
+    width: 80vw;
+  }
 `;
 
 const Overlay = styled.div`
