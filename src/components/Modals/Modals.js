@@ -12,6 +12,7 @@ import EditBoardModal from "./EditBoard/EditBoardModal";
 import EditTaskModal from "./EditTask/EditTaskModal";
 import ViewTaskModal from "./ViewTask/ViewTaskModal";
 import styled from "styled-components";
+import SideBarModal from "./SideBarModal/SideBarModal";
 
 const StyledOverlay = styled(motion.div)`
   position: fixed;
@@ -72,6 +73,7 @@ const Modals = () => {
         {ModalsType === "delete-task" && <DeleteTaskModal />}
         {ModalsType === "edit-task" && <EditTaskModal />}
         {ModalsType === "new-column" && <EditBoardModal type="new-column" />}
+        {ModalsType === "sidebar-modal" && <SideBarModal />}
       </AnimatePresence>
       <AnimatePresence>
         {(ModalsOpen && ModalsType !== "sidebar-modal") && <Overlay onClick={handleOverlayClick} />}
